@@ -10,6 +10,7 @@ const Home = () => {
     const [projects, setProjects] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [homeImage, setHomeImage] = useState(null)
     const nameArray = ['h', 'u', 'b', 'h', 'a', 'n', 'g', 'k', 'a', 'r']
     const jobArray = [
         'F',
@@ -43,10 +44,10 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
+        // Fetch latest projects
         fetch('/api/projects')
             .then(res => res.json())
             .then(data => {
-                // Get latest 3 projects, sorted by createdAt (newest first)
                 const sortedProjects = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                 setProjects(sortedProjects.slice(0, 3))
                 setLoading(false)
@@ -55,6 +56,18 @@ const Home = () => {
                 console.error('Error fetching projects:', err)
                 setError('Failed to load projects')
                 setLoading(false)
+            })
+
+        // Fetch home image
+        fetch('/api/home-image')
+            .then(res => res.json())
+            .then(data => {
+                if (data?.image) {
+                    setHomeImage(data.image)
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching home image:', err)
             })
     }, [])
 
@@ -67,7 +80,7 @@ const Home = () => {
                         <span className={`${letterClass} _12`}>i,</span>
                         <br />
                         <span className={`${letterClass} _13`}>I</span>
-                        <span className={`${letterClass} _14`}>'m</span>
+                        <span className={`${letterClass} _14`}>&apos;m</span>
                         <Image src="/images/logo-s.png" alt="developer" width={32} height={32} />
                         <AnimatedLetters
                             letterClass={letterClass}
@@ -82,14 +95,37 @@ const Home = () => {
                         />
                     </h1>
 
-                    <h2>Frontend Developer / JavaScript / MERN Stack</h2>
-                    <h2>C++ Expert / Data Structures & Algorithms / object oriented programming</h2>
+                    <h2>Fullstack Developer / JavaScript / MERN Stack</h2>
+                    <h2>C++ / JAVA / Python / Data Analysis / Data Structures & Algorithms / object oriented programming</h2>
 
                     <Link href="/contact" className="flat-button">
                         CONTACT ME
                     </Link>
                 </div>
-                <Logo />
+
+                {/* Right image card */}
+                <div className="home-image-card">
+                    {homeImage ? (
+                        <div className="home-image-wrapper">
+                            <Image
+                                src={homeImage}
+                                alt="Home visual"
+                                width={380}
+                                height={480}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                        </div>
+                    ) : (
+                        <div className="home-image-placeholder">
+                            <div style={{ opacity: 0.3 }}>
+                                <Logo />
+                            </div>
+                            <p style={{ marginTop: '20px', color: '#fff', opacity: 0.6, fontSize: '14px', fontFamily: 'sans-serif' }}>
+                                No image uploaded
+                            </p>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Projects Section */}

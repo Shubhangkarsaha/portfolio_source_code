@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 const Sidebar = () => {
     const router = useRouter()
+    const isActive = (path) => router.pathname === path
 
     return (
         <div className="nav-bar">
@@ -19,42 +20,42 @@ const Sidebar = () => {
                     href="/"
                     className={router.pathname === '/' ? 'active' : ''}
                 >
-                    <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
+                    <FontAwesomeIcon icon={faHome} />
                 </Link>
 
                 <Link 
                     href="/about"
                     className={`about-link ${router.pathname === '/about' ? 'active' : ''}`}
                 >
-                    <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
+                    <FontAwesomeIcon icon={faUser} />
                 </Link>
 
                 <Link 
                     href="/contact"
                     className={`contact-link ${router.pathname === '/contact' ? 'active' : ''}`}
                 >
-                    <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
+                    <FontAwesomeIcon icon={faEnvelope} />
                 </Link>
             </nav>
-            <ul>
+            <ul className="social-links">
                 <li>
                     <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/shubhangkar/">
-                        <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e" />
+                        <FontAwesomeIcon icon={faLinkedin} />
                     </a>
                 </li>
                 <li>
                     <a target="_blank" rel="noreferrer" href="https://github.com/Shubhangkarsaha">
-                        <FontAwesomeIcon icon={faGithub} color="#4d4d4e" />
+                        <FontAwesomeIcon icon={faGithub} />
                     </a>
                 </li>
                 <li>
                     <a target="_blank" rel="noreferrer" href="https://www.youtube.com/@nabla426">
-                        <FontAwesomeIcon icon={faYoutube} color="#4d4d4e" />
+                        <FontAwesomeIcon icon={faYoutube} />
                     </a>
                 </li>
                 <li>
                     <a target="_blank" rel="noreferrer" href="/">
-                        <FontAwesomeIcon icon={faSkype} color="#4d4d4e" />
+                        <FontAwesomeIcon icon={faSkype} />
                     </a>
                 </li>
             </ul>
@@ -62,5 +63,5 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
 
+export default Sidebar
