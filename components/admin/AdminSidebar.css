@@ -1,0 +1,10 @@
+/* Admin Sidebar spacing & layout overrides */
+/* Only minimal overrides - Tailwind remains primary */
+
+/* Ensure sidebar stays fixed on mobile */
+@media (max-width: 1024px) {
+  .fixed.inset-y-0 {
+    position: fixed;
+  }
+}
+

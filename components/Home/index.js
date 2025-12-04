@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import AnimatedLetters from '../AnimatedLetters'
-import Logo from './Logo'
+import Logo from './Logo/index'
 import Loader from 'react-loaders'
 import Image from 'next/image'
+import '../../pages/home/home.css'
 
 const Home = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
@@ -95,8 +96,8 @@ const Home = () => {
                         />
                     </h1>
 
-                    <h2>Fullstack Developer / JavaScript / MERN Stack</h2>
-                    <h2>C++ / JAVA / Python / Data Analysis / Data Structures & Algorithms / object oriented programming</h2>
+                    <h2>Django / Scikit-learn / MERN Stack</h2>
+                    <h2>C++ / JAVA / JavaScript / Python / Data Analysis / Data Structures & Algorithms / object oriented programming</h2>
 
                     <Link href="/contact" className="flat-button">
                         CONTACT ME

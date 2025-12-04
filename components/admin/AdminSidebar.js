@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { LayoutDashboard, FolderKanban, Award, Trophy, X } from 'lucide-react'
+import './AdminSidebar.css'
 
 const AdminSidebar = ({ isOpen, onClose }) => {
   const router = useRouter()

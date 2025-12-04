@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AdminSidebar from './AdminSidebar'
 import { LogOut, Menu, X } from 'lucide-react'
+import './AdminLayout.css'
 
 const AdminLayout = ({ children }) => {
   const router = useRouter()

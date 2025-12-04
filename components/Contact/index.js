@@ -3,6 +3,7 @@ import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import emailjs from '@emailjs/browser'
 import dynamic from 'next/dynamic'
+import '../../pages/contact/contact.css'
 
 // Dynamically import MapComponent to avoid SSR issues
 const ContactMap = dynamic(() => import('./MapComponent'), {

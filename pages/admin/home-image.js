@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../components/admin/AdminLayout'
 import { Image as ImageIcon } from 'lucide-react'
 import Image from 'next/image'
+import './home-image.css'
 
 export default function AdminHomeImage() {
   const router = useRouter()
