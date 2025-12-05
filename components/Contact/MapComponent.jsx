@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import '../../pages/contact/contact.css';
 
 // icon fix
 delete L.Icon.Default.prototype._getIconUrl;
