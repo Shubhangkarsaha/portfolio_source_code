@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faHome, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faSkype, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import Image from 'next/image'
 import './sidebar.css'
@@ -36,6 +36,13 @@ const Sidebar = () => {
                     className={`contact-link ${router.pathname === '/contact' ? 'active' : ''}`}
                 >
                     <FontAwesomeIcon icon={faEnvelope} />
+                </Link>
+
+                <Link 
+                    href="/search"
+                    className={`search-link ${router.pathname === '/search' ? 'active' : ''}`}
+                >
+                    <FontAwesomeIcon icon={faSearch} />
                 </Link>
             </nav>
             <ul className="social-links">
