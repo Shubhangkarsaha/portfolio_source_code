@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCss3, faGitAlt, faHtml5, faJsSquare, faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import Loader from 'react-loaders'
 import Image from 'next/image'
-import '../../pages/about/about.css'
 
 const About = () => {
     const [letterClass, setLetterClass] = useState('text-animate')

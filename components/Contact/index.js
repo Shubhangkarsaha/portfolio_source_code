@@ -3,7 +3,6 @@ import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import emailjs from '@emailjs/browser'
 import dynamic from 'next/dynamic'
-import '../../pages/contact/contact.css'
 
 // Dynamically import MapComponent to avoid SSR issues
 const ContactMap = dynamic(() => import('./MapComponent'), {
@@ -64,7 +63,7 @@ const Contact = () => {
                                 />
                             </h1>
                             <p>
-                                I&apos;m a very ambitious front-end developer looking for a role in
+                                I'm a very ambitious front-end developer looking for a role in
                                 established IT company with the opportunity to work with the latest
                                 technologies on chalenging and diverse project.
                             </p>

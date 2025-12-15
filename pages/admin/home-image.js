@@ -3,15 +3,12 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../components/admin/AdminLayout'
 import { Image as ImageIcon } from 'lucide-react'
 import Image from 'next/image'
-import './home-image.css'
 
 export default function AdminHomeImage() {
   const router = useRouter()
   const [currentImage, setCurrentImage] = useState(null)
-  const [selectedFile, setSelectedFile] = useState(null)
-  const [previewUrl, setPreviewUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
   const [loading, setLoading] = useState(true)
-  const [uploading, setUploading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
@@ -30,6 +27,9 @@ export default function AdminHomeImage() {
       const res = await fetch('/api/home-image')
       const data = await res.json()
       setCurrentImage(data)
+      if (data?.image) {
+        setImageUrl(data.image)
+      }
     } catch (err) {
       console.error('Error fetching home image:', err)
       setError('Failed to load current home image')
@@ -38,95 +38,38 @@ export default function AdminHomeImage() {
     }
   }
 
-  const handleFileSelect = (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      setError('Please select an image file')
-      return
-    }
-
-    // Validate file size (10MB limit)
-    if (file.size > 10 * 1024 * 1024) {
-      setError('Image size must be less than 10MB')
-      return
-    }
-
-    setError('')
-    setSelectedFile(file)
-
-    // Create preview URL
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result)
-    }
-    reader.readAsDataURL(file)
-  }
-
   const getToken = () => localStorage.getItem('adminToken')
 
   const handleSave = async () => {
     setError('')
-    if (!selectedFile) {
-      setError('Please select an image file')
+    if (!imageUrl) {
+      setError('Please enter an image URL')
       return
     }
 
     try {
-      // Step 1: Upload to Cloudinary
-      setUploading(true)
-      const formData = new FormData()
-      formData.append('image', selectedFile)
-
-      const uploadRes = await fetch('/api/upload-image', {
-        method: 'POST',
-        body: formData,
-      })
-
-      const uploadData = await uploadRes.json()
-
-      if (!uploadRes.ok) {
-        setError(uploadData.message || 'Failed to upload image')
-        setUploading(false)
-        return
-      }
-
-      // Step 2: Save URL to MongoDB
-      setUploading(false)
       setSaving(true)
-
-      const saveRes = await fetch('/api/home-image', {
+      const res = await fetch('/api/home-image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${getToken()}`,
         },
-        body: JSON.stringify({ image: uploadData.url }),
+        body: JSON.stringify({ image: imageUrl }),
       })
 
-      const saveData = await saveRes.json()
+      const data = await res.json()
 
-      if (!saveRes.ok) {
-        setError(saveData.message || 'Failed to save image URL')
-        setSaving(false)
+      if (!res.ok) {
+        setError(data.message || 'Failed to save image')
         return
       }
 
-      // Success - update current image and reset form
-      setCurrentImage(saveData)
-      setSelectedFile(null)
-      setPreviewUrl('')
-      
-      // Reset file input
-      const fileInput = document.getElementById('image-file-input')
-      if (fileInput) fileInput.value = ''
+      setCurrentImage(data)
     } catch (err) {
       console.error('Error saving home image:', err)
       setError('An error occurred while saving')
     } finally {
-      setUploading(false)
       setSaving(false)
     }
   }
@@ -185,42 +128,26 @@ export default function AdminHomeImage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Update Image</h3>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Image File *
+                  Image URL *
                 </label>
                 <input
-                  id="image-file-input"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileSelect}
+                  type="text"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
+                  placeholder="https://your-cdn.com/image.png or /images/home-hero.png"
                 />
                 <p className="mt-1 text-xs text-gray-500">
-                  Select an image file (max 10MB). Supported formats: JPG, PNG, GIF, WebP.
+                  Use a full URL (CDN, GitHub, etc.) or a path from the public folder (e.g., /images/home-hero.png).
                 </p>
               </div>
 
-              {/* Preview */}
-              {previewUrl && (
-                <div className="mt-4">
-                  <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
-                  <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                    <Image
-                      src={previewUrl}
-                      alt="Preview"
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                </div>
-              )}
-
               <button
                 onClick={handleSave}
-                disabled={!selectedFile || uploading || saving}
+                disabled={saving}
                 className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                {uploading ? 'Uploading...' : saving ? 'Saving...' : 'Save Image'}
+                {saving ? 'Saving...' : 'Save Image'}
               </button>
             </div>
           </div>

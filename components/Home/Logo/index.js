@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import '../../Logo/logo.css'
 
 const Logo = () => {
     const bgRef = useRef()
