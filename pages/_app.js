@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/components/buttons.css'
 import { useEffect } from 'react'
 import 'animate.css'
 import 'loaders.css'

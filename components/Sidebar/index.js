@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faSkype, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import Image from 'next/image'
+import '../../styles/sidebar.css'
 
 const Sidebar = () => {
     const router = useRouter()
@@ -24,14 +25,14 @@ const Sidebar = () => {
                 </Link>
 
                 <Link 
-                    href="/about"
+                    href="/about/about"
                     className={`about-link ${router.pathname === '/about' ? 'active' : ''}`}
                 >
                     <FontAwesomeIcon icon={faUser} />
                 </Link>
 
                 <Link 
-                    href="/contact"
+                    href="/contact/cont"
                     className={`contact-link ${router.pathname === '/contact' ? 'active' : ''}`}
                 >
                     <FontAwesomeIcon icon={faEnvelope} />

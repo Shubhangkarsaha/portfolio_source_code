@@ -3,7 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import '../../pages/contact/contact.css';
+// import '../../pages/contact/contact.css';
 
 // icon fix
 delete L.Icon.Default.prototype._getIconUrl;
@@ -15,7 +15,7 @@ L.Icon.Default.mergeOptions({
 
 export default function MapComponent() {
   // Fixed coordinates for Punjab, India
-  const position = [30.9000, 75.8573];
+  const position = [28.489937, 77.084162];
 
   return (
     <div className="map-card">
@@ -37,7 +37,7 @@ export default function MapComponent() {
                 Shubhangkar Saha
               </strong>
               <div style={{ fontSize: '12px', color: '#333' }}>
-                India, LPU, Punjab
+                Sector 25, Gurugram, Haryana, India
               </div>
             </div>
           </Popup>
