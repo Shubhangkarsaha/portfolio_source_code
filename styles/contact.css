@@ -37,8 +37,9 @@
   font-family: 'Coolvetica';
   color: #ffd700;
   font-weight: 400;
-  margin: 0 0 40px;
+  margin-top: 0;
   position: relative;
+  margin-bottom: 40px;
   left: 10px;
 }
 
@@ -47,9 +48,10 @@
   font-family: 'La Belle Aurore';
   font-size: 18px;
   position: absolute;
-  top: -10px;
+  margin-top: -10px;
   left: -10px;
   opacity: 0.6;
+  line-height: 18px;
 }
 
 .contact-page h1::after {
@@ -59,6 +61,7 @@
   position: absolute;
   left: -30px;
   bottom: -20px;
+  margin-left: 20px;
   opacity: 0.6;
 }
 
