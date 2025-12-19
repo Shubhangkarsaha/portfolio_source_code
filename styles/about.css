@@ -15,9 +15,10 @@
   width: 35%;
   vertical-align: top;
   display: block;
+  min-height: auto;
   max-height: none;
   padding-top: 10vh;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 
 .about-page h1 {
@@ -78,7 +79,8 @@
 /* Stage cube */
 .stage-cube-cont {
   width: 50%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   top: 0;
   padding-top: 18%;
   margin-left: 0;
@@ -158,3 +160,19 @@
   transform: rotateX(-90deg) translateZ(100px);
 }
 
+/* ===============================
+   SCROLLBAR (VISIBLE)
+================================ */
+
+.container.about-page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.container.about-page::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 10px;
+}
+
+.container.about-page::-webkit-scrollbar-track {
+  background: transparent;
+}
