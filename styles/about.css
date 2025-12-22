@@ -9,7 +9,7 @@
 /* About and Contact page styles */
 .about-page .text-zone {
   position: relative;
-  left: 15%;
+  left: 10%;
   top: 0;
   transform: none;
   width: 35%;
@@ -17,8 +17,12 @@
   display: block;
   min-height: auto;
   max-height: none;
-  padding-top: 10vh;
-  padding-bottom: 80px;
+  padding-top: 30vh;
+  padding-bottom: 200px;
+}
+
+.about-page .text-zone > p:last-of-type {
+  margin-bottom: 60px;
 }
 
 .about-page h1 {

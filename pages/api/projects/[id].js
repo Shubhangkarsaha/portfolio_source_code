@@ -1,6 +1,6 @@
-import { connectToDB } from "../../../../lib/mongodb";
-import { verifyToken } from "../../../../lib/verifyToken";
-import Project from "../../../../models/Project";
+import { connectToDB } from "../../../lib/mongodb";
+import { verifyToken } from "../../../lib/verifyToken";
+import Project from "../../../models/Project";
 
 export default async function handler(req, res) {
   await connectToDB();

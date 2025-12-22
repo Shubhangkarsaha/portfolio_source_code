@@ -130,7 +130,7 @@ const Home = () => {
             </div>
 
             {/* Projects Section */}
-            {loading ? (
+            {/* {loading ? (
                 <div className="container" style={{ marginTop: '100px' }}>
                     <Loader type="ball-grid-pulse" />
                 </div>
@@ -236,7 +236,7 @@ const Home = () => {
                 <div className="container" style={{ marginTop: '100px', color: '#fff', textAlign: 'center' }}>
                     <p style={{ fontSize: '18px', opacity: 0.7 }}>No projects yet</p>
                 </div>
-            )}
+            )} */}
 
             <Loader type="pacman" />
         </>
